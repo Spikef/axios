@@ -13,14 +13,18 @@ function generateConfig(name) {
       libraryTarget: 'umd'
     },
     node: {
-      process: false
+      process: false,
+      global: false
     },
     devtool: 'source-map'
   };
 
   config.plugins = [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        'BUILD': JSON.stringify(true)
+      }
     })
   ];
 
